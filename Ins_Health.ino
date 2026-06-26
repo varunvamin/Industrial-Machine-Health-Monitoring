@@ -1,15 +1,11 @@
 #include <WiFi.h>
 #include <WebServer.h>
-#include <ThingSpeak.h>
 
 // --- Config ---
 const char* ssid = "HI";
 const char* password = "HIHIHIHI";
-unsigned long myChannelNumber = 3350033; 
-const char* myWriteAPIKey = "OPB40Z8RUD38UWDJ";
 
 WebServer server(80);
-WiFiClient client;
 
 // --- Global States ---
 float temp = 30, current = 0;
@@ -18,6 +14,7 @@ bool sensorsHalted = false;
 String systemStatus = "Monitoring Active";
 
 // --- HTML Dashboard ---
+// (We use a simple built-in HTML here, but see the 'docs' folder for the premium web UI simulation!)
 String getHTML() {
   String html = "<html><head><meta name='viewport' content='width=device-width, initial-scale=1.0'><meta http-equiv='refresh' content='5'>";
   html += "<style>body{font-family:sans-serif; text-align:center; background:#f4f4f4;}";
@@ -57,7 +54,6 @@ void setup() {
   server.on("/resume", handleResume);
   server.begin();
   
-  ThingSpeak.begin(client);
   Serial.println("\nReady. Access IP: " + WiFi.localIP().toString());
 }
 
@@ -80,19 +76,5 @@ void loop() {
     // 2. LED FEEDBACK (Blink if Over Temp)
     if (temp > 30.0) digitalWrite(2, HIGH); 
     else digitalWrite(2, LOW);
-
-    // 3. THINGSPEAK UPDATE (Every 20s)
-    static unsigned long lastTS = 0;
-    if (millis() - lastTS > 20000) {
-      ThingSpeak.setField(1, temp);
-      ThingSpeak.setField(2, current);
-      ThingSpeak.setField(3, (int)vib);
-      
-      int x = ThingSpeak.writeFields(myChannelNumber, myWriteAPIKey);
-      if(x == 200) Serial.println("ThingSpeak Update Successful");
-      else Serial.println("Update Failed. HTTP Code: " + String(x));
-      
-      lastTS = millis();
-    }
   }
 }

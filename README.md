@@ -1,14 +1,15 @@
 # Industrial Machine Health Monitoring System using ESP32 & IoT
 
+[![Live Demo](https://img.shields.io/badge/View-Live_Demo-success?style=for-the-badge)](https://varunvamin.github.io/Industrial-Machine-Health-Monitoring/)
+
 ## Overview
-This project implements an IoT-based industrial machine monitoring system using an ESP32 microcontroller. It continuously monitors the health of industrial machinery using multiple sensors (temperature, current, and vibration) and provides real-time data visualization through a local web dashboard and the ThingSpeak cloud platform.
+This project implements an IoT-based industrial machine monitoring system using an ESP32 microcontroller. It continuously monitors the health of industrial machinery using multiple sensors (temperature, current, and vibration) and hosts a real-time web dashboard directly on the local network. A simulated live demo of this interface is available to view via GitHub Pages.
 
 ## Key Features
 * **Real-time Monitoring:** Collects data from temperature (LM35), current (ACS712), and vibration (SW-420) sensors.
-* **Cloud Integration:** Sends telemetry data to ThingSpeak every 20 seconds for historical tracking and remote visualization.
 * **Local Web Dashboard:** Hosts a responsive web interface directly on the ESP32 to view live sensor readings on the local network.
 * **Maintenance Mode:** Includes a manual "QC Mode" that pauses sensor readings and alerts during maintenance or quality checks.
-* **Threshold Alerts:** Generates alerts (via status LED) when the temperature exceeds safe operational limits (30°C).
+* **Threshold Alerts:** Generates hardware alerts (via status LED) when the temperature exceeds safe operational limits (30°C).
 
 ## Hardware Components
 * **Microcontroller:** ESP32 Development Board
@@ -29,25 +30,19 @@ This project implements an IoT-based industrial machine monitoring system using 
 * **Arduino IDE** (Environment for compiling and uploading)
 * **WiFi.h** (ESP32 standard library for network connectivity)
 * **WebServer.h** (For hosting the local dashboard)
-* **ThingSpeak.h** (Official library for ThingSpeak cloud integration)
 
 ## Setup Instructions
 1. Clone or download this repository.
 2. Open `Ins_Health.ino` in the Arduino IDE.
-3. Install the required libraries (`ThingSpeak` via the Library Manager).
-4. Update the Wi-Fi credentials:
+3. Update the Wi-Fi credentials to match your local network:
    ```cpp
    const char* ssid = "YOUR_WIFI_SSID";
    const char* password = "YOUR_WIFI_PASSWORD";
    ```
-5. Update your ThingSpeak Channel Details:
-   ```cpp
-   unsigned long myChannelNumber = YOUR_CHANNEL_ID; 
-   const char* myWriteAPIKey = "YOUR_WRITE_API_KEY";
-   ```
-6. Select your ESP32 board model and COM port in Arduino IDE.
-7. Compile and Upload the code.
-8. Open the Serial Monitor (115200 baud) to find the local IP address of the dashboard.
+4. Select your ESP32 board model and COM port in Arduino IDE.
+5. Compile and Upload the code.
+6. Open the Serial Monitor (115200 baud) to find the local IP address of the dashboard.
+7. Enter the IP address in your web browser to view the real-time hub.
 
-## Dashboard Previews
-*(Add screenshots of your ThingSpeak graphs and Local Web Dashboard here)*
+## Dashboard Preview
+To see what the web interface looks like, check out the **[Live UI Simulation](https://varunvamin.github.io/Industrial-Machine-Health-Monitoring/)** hosted on GitHub pages!

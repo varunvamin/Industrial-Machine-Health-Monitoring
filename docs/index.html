@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Health Hub - Live Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="pulse-indicator" id="status-pulse"></div>
+                <h1>Machine Health Hub</h1>
+            </div>
+            <p class="subtitle">ESP32 IoT Dashboard Simulation</p>
+        </header>
+
+        <div class="status-banner" id="status-banner">
+            <span id="status-text">Monitoring Active</span>
+        </div>
+
+        <main class="grid" id="sensors-grid">
+            <div class="card" id="temp-card">
+                <div class="card-icon">🌡️</div>
+                <h3>Temperature</h3>
+                <div class="value-display">
+                    <span class="value" id="temp-val">30.0</span>
+                    <span class="unit">°C</span>
+                </div>
+            </div>
+
+            <div class="card" id="current-card">
+                <div class="card-icon">⚡</div>
+                <h3>Motor Current</h3>
+                <div class="value-display">
+                    <span class="value" id="current-val">0.00</span>
+                    <span class="unit">A</span>
+                </div>
+            </div>
+
+            <div class="card" id="vib-card">
+                <div class="card-icon">📳</div>
+                <h3>Vibration</h3>
+                <div class="value-display">
+                    <span class="value" id="vib-val" style="font-size: 2rem;">LOW</span>
+                </div>
+            </div>
+        </main>
+
+        <div class="controls">
+            <button id="toggle-btn" class="btn btn-halt">HALT FOR MAINTENANCE</button>
+        </div>
+        
+        <footer>
+            <p>This is a web simulation of the local ESP32 dashboard.</p>
+        </footer>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
