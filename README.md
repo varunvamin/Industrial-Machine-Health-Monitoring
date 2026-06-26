@@ -54,3 +54,9 @@ This project implements an IoT-based industrial machine monitoring system using 
 
 ## Dashboard Preview
 To see what the web interface looks like without needing the hardware, check out the **[Live UI Simulation](https://varunvamin.github.io/Industrial-Machine-Health-Monitoring/)** hosted on GitHub pages!
+
+### ThingSpeak Cloud Integration
+![ThingSpeak Dashboard](thingspeak.jpg)
+
+### Local Web Dashboard
+![Local Hub](dashboard.jpg)
